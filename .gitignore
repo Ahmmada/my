@@ -1,2 +1,15 @@
 *.ibc
 *.o
+<br> 
+<br> 
+<table class="table-tabular" style="margin: 0 0 1.5em 0;"> 
+<thead> 
+<tr> 
+<th>Quantity</th>
+ <th>Item</th>
+ {% if show_line_item_taxes %} 
+<th>Taxes</th> {% endif %}
+ <th>Price</th>
+ </tr> </thead> <tbody> {% for line_item in line_items %} <tr> 
+<td>{{ line_item.quantity }} x</td> <td><b>{{ line_item.title }}</b></td> {% if line_item.tax_lines %} <td> {% for tax_line in line_item.tax_lines %} {{ tax_line.price | money }} {{ tax_line.title }}<br/> {% endfor %} </td> {% endif %}
+ <td>{{ line_item.price | money }}</td> </tr> {% endfor %} </tbody> </table>
